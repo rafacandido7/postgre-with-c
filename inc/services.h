@@ -10,7 +10,15 @@ void start(void);
 //! A função options recebe o status da conexão do banco de dados e da ao usuário as opções de execução do programa.
 void options(PGconn* conn);
 
-// void showTables(void);
+/**
+ * @brief Exibe a lista de tabelas do banco de dados.
+ *
+ * Executa uma consulta SQL para obter os nomes das tabelas do esquema "public" e exibe-os.
+ *
+ * @param conn Ponteiro para uma conexão com o banco de dados.
+ *
+ */
+void showTables(PGconn* conn);
 // void showTableSpecifies(const char* table);
 // void createNewTable(void);
 // void insert(void);

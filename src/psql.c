@@ -72,3 +72,8 @@ void closeConnection(PGconn* conn) {
     print("Erro ao encerrar a conexão do banco de dados!", "error");
   }
 }
+
+PGresult* getTablesQuery(PGconn* conn) {
+  PGresult* result = PQexec(conn, "SELECT table_name FROM information_schema.tables WHERE table_schema = 'public';");
+  return result;
+}

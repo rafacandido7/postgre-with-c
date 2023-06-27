@@ -37,14 +37,15 @@ void options(PGconn* conn) {
 
     scanf("%d", &loop);
 
-    printLine("blue");
+    printLine("green");
 
     if (loop == 0) {
       print("Encerrando programa...", "success");
       closeConnection(conn);
     }
     if (loop == 1) {
-      // showTables();
+      showTables(conn);
+      printLine("green");
     }
     if (loop == 2) {
       char* table;
@@ -67,10 +68,27 @@ void options(PGconn* conn) {
   }
 }
 
-// void showTables() {
-//   const char tables;
-//   //show tables
-// }
+void showTables(PGconn* conn) {
+  PGresult* result = getTablesQuery(conn);
+  if (PQresultStatus(result) == PGRES_TUPLES_OK) {
+    int rowsQuantity = PQntuples(result);
+
+    if (rowsQuantity > 0) {
+      print("Lista de tabelas:", "success");
+      for (int i = 0; i < rowsQuantity; i++) {
+        printf("- %s\n", PQgetvalue(result, i, 0));
+      }
+      printf("\n");
+    } else {
+      print("Não há tabelas no banco de dados.", "error");
+    }
+  } else {
+    print("Erro ao executar a consulta:", "error");
+    print(PQerrorMessage(conn), "error");
+  }
+
+  PQclear(result);
+}
 
 // void showTypesOfTable(const char * table) {
 //   //show types of table
