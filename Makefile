@@ -12,7 +12,7 @@ EXE = main
 
 .PHONY: all clean
 
-all: clean $(EXE)
+all: clean $(EXE) run
 
 $(EXE): $(OBJ)
 	$(CC) $(LDFLAGS) $(PSQLFLAGS) $(OBJDIR)/*.o -o $@

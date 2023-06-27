@@ -3,9 +3,12 @@
 
 #include "psql.h"
 #include "helpers.h"
+#include "/opt/homebrew/opt/libpq/include/libpq-fe.h"
 
+//! Essa é a função responsável por iniciar o programa.
 void start(void);
-// void options(void);
+//! A função options recebe o status da conexão do banco de dados e da ao usuário as opções de execução do programa.
+void options(PGconn* conn);
 
 // void showTables(void);
 // void showTableSpecifies(const char* table);

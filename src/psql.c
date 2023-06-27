@@ -17,25 +17,40 @@ ConnectionInfo* getConnectionInfo() {
   ConnectionInfo* info = malloc(sizeof(ConnectionInfo));
 
   printf("Informe o host do banco de dados: ");
-  scanf("%s", info->host);
+  scanf("%99s", info->host);
 
   printf("Informe a porta do banco de dados: ");
-  scanf("%s", info->port);
+  scanf("%9s", info->port);
 
   printf("Informe o nome do banco de dados: ");
-  scanf("%s", info->database);
+  scanf("%99s", info->database);
 
   printf("Informe o nome de usuário: ");
-  scanf("%s", info->user);
+  scanf("%99s", info->user);
 
   printf("Informe a senha: ");
-  scanf("%s", info->password);
+  scanf("%99s", info->password);
+
+  printf("\n");
+
+  return info;
+}
+
+ConnectionInfo* mockConnectionInfo() {
+  ConnectionInfo* info = malloc(sizeof(ConnectionInfo));
+
+  strcpy(info->host, "localhost");
+  strcpy(info->port, "5432");
+  strcpy(info->database, "postgres");
+  strcpy(info->user, "root");
+  strcpy(info->password, "root");
 
   return info;
 }
 
 PGconn* connectDB() {
-  ConnectionInfo* connInfo = getConnectionInfo();
+  // ConnectionInfo* connInfo = getConnectionInfo();
+  ConnectionInfo* connInfo = mockConnectionInfo();
   PGconn* conn = PQsetdbLogin(connInfo->host, connInfo->port, NULL, NULL, connInfo->database, connInfo->user, connInfo->password);
 
   free(connInfo);
@@ -46,5 +61,14 @@ PGconn* connectDB() {
     return NULL;
   } else {
     return conn;
+  }
+}
+
+void closeConnection(PGconn* conn) {
+  PQfinish(conn);
+  if (PQstatus(conn) != CONNECTION_OK) {
+    print("Conexão encerrada com sucesso.", "success");
+  } else {
+    print("Erro ao encerrar a conexão do banco de dados!", "error");
   }
 }

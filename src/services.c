@@ -6,13 +6,14 @@
 #include "/opt/homebrew/opt/libpq/include/libpq-fe.h"
 
 void start() {
-  print("socketPSQL.exe v1.0.0", "blue");
+  print("connPSQL.exe v0.0.3", "blue");
 
   PGconn* connection = connectDB();
 
   if (connection != NULL) {
     print("Connected!", "success");
-    // options();
+    printLine("success");
+    options(connection);
   } else {
     print("Erro ao conectar ao banco de dados, tente novamente!", "error");
   }
@@ -20,56 +21,51 @@ void start() {
   return;
 }
 
-// void options(void) {
-//   int loop = 0;
+void options(PGconn* conn) {
+  int loop = -1;
 
-//   print("Options:", "blue");
+  print("Options:", "blue");
 
-//   while (loop != 0) {
-//     print("0 - Encerrar programa", "blue");
-//     print("1 - Exibir a lista de tabelas do BD", "blue");
-//     print("2 - Exibir as especificações de campos e tipos de uma determinada tabela", "blue");
-//     print("3 - Criar uma nova tabela\n", "blue");
-//     print("4 - Exibir a lista de tabelas do BD", "blue");
-//     print("5 - Exibir a lista de tabelas do BD", "blue");
-//     print("6 - Exibir a lista de tabelas do BD", "blue");
+  while (loop != 0) {
+    print("0 - Encerrar programa", "blue");
+    print("1 - Exibir a lista de tabelas do BD", "blue");
+    print("2 - Exibir as especificações de campos e tipos de uma determinada tabela", "blue");
+    print("3 - Criar uma nova tabela", "blue");
+    print("4 - Inserir dados em uma tabela", "blue");
+    print("5 - Exibir dados de uma tabela", "blue");
+    print("6 - Remover os dados de uma tabela", "blue");
 
-//     scanf("%d", &loop);
+    scanf("%d", &loop);
 
-//     if (loop == 0) {
-//       print("Encerrando programa...", "success");
-//       exit(1);
-//       return;
-//     }
-//     if (loop == 1) {
-//       showTables();
-//       return;
-//     }
-//     if (loop == 2) {
-//       char* table;
-//       print("Qual o nome da tabela?", "blue");
-//       scanf("%s", table);
-//       showTableSpecifies(table);
-//       return;
-//     }
-//     if (loop == 3) {
-//       createNewTable();
-//       return;
-//     }
-//     if (loop == 4) {
-//       insert();
-//       return;
-//     }
-//     if (loop == 5) {
-//       showTable();
-//       return;
-//     }
-//     if (loop == 6) {
-//       deleteRow();
-//       return;
-//     }
-//   }
-// }
+    printLine("blue");
+
+    if (loop == 0) {
+      print("Encerrando programa...", "success");
+      closeConnection(conn);
+    }
+    if (loop == 1) {
+      // showTables();
+    }
+    if (loop == 2) {
+      char* table;
+      // print("Qual o nome da tabela?", "blue");
+      // scanf("%s", table);
+      // showTableSpecifies(table);
+    }
+    if (loop == 3) {
+      // createNewTable();
+    }
+    if (loop == 4) {
+      // insert();
+    }
+    if (loop == 5) {
+      // showTable();
+    }
+    if (loop == 6) {
+      // deleteRow();
+    }
+  }
+}
 
 // void showTables() {
 //   const char tables;

@@ -45,3 +45,7 @@ bool strIsEqual(const char *str1, const char *str2) {
   return res;
 }
 
+void printLine(char* color) {
+  print("-------------------------------------------", color);
+}
+

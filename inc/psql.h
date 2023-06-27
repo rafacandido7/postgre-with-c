@@ -8,9 +8,17 @@
 #include <string.h>
 #include "/opt/homebrew/opt/libpq/include/libpq-fe.h"
 
+//! Essa struct é uma estrutura que armazena as informações necessárias para criar uma conexão com um banco de dados.
 typedef struct _connectionInfo ConnectionInfo;
+//! Essa função cria uma struct com as informações necessárias para a conexão do banco de dados utilizando a struct de informações.
 ConnectionInfo* getConnectionInfo();
 
+//! Função para mockar os dados de conexão
+ConnectionInfo* mockConnectionInfo();
+
+//! Essa função faz a conexão com o banco de dados e retorna o status da conexão.
 PGconn* connectDB();
+//! Essa função encerra a conexão com o banco de dados.
+void closeConnection(PGconn* conn);
 
 #endif
