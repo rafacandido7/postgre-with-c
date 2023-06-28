@@ -19,7 +19,7 @@ void options(PGconn* conn);
  *
  */
 void showTables(PGconn* conn);
-// void showTableSpecifies(const char* table);
+void showTableSpecifications(PGconn* conn, const char* tableName);
 // void createNewTable(void);
 // void insert(void);
 // void showTable(void);

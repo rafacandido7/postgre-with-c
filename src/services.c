@@ -6,7 +6,7 @@
 #include "/opt/homebrew/opt/libpq/include/libpq-fe.h"
 
 void start() {
-  print("connPSQL.exe v0.0.3", "blue");
+  print("connPSQL.exe v0.0.4", "blue");
 
   PGconn* connection = connectDB();
 
@@ -30,10 +30,10 @@ void options(PGconn* conn) {
     print("0 - Encerrar programa", "blue");
     print("1 - Exibir a lista de tabelas do BD", "blue");
     print("2 - Exibir as especificações de campos e tipos de uma determinada tabela", "blue");
-    print("3 - Criar uma nova tabela", "blue");
-    print("4 - Inserir dados em uma tabela", "blue");
-    print("5 - Exibir dados de uma tabela", "blue");
-    print("6 - Remover os dados de uma tabela", "blue");
+    // print("3 - Criar uma nova tabela", "blue");
+    // print("4 - Inserir dados em uma tabela", "blue");
+    // print("5 - Exibir dados de uma tabela", "blue");
+    // print("6 - Remover os dados de uma tabela", "blue");
 
     scanf("%d", &loop);
 
@@ -48,10 +48,13 @@ void options(PGconn* conn) {
       printLine("green");
     }
     if (loop == 2) {
-      char* table;
-      // print("Qual o nome da tabela?", "blue");
-      // scanf("%s", table);
-      // showTableSpecifies(table);
+      char* table = (char*)malloc(100*sizeof(char));
+      print("Qual o nome da tabela?", "blue");
+      scanf("%99s", table);
+      print(table, "green");
+      showTableSpecifications(conn, table);
+      free(table);
+      printLine("green");
     }
     if (loop == 3) {
       // createNewTable();
@@ -90,9 +93,32 @@ void showTables(PGconn* conn) {
   PQclear(result);
 }
 
-// void showTypesOfTable(const char * table) {
-//   //show types of table
-// }
+void showTableSpecifications(PGconn* conn, const char* tableName) {
+  char query[256];
+  snprintf(query, sizeof(query), "SELECT column_name, data_type FROM information_schema.columns WHERE table_name = '%s';", tableName);
+
+  PGresult* result = exeQuery(conn, query);
+
+  if (PQresultStatus(result) == PGRES_TUPLES_OK) {
+    int rowsQuantity = PQntuples(result);
+
+    if (rowsQuantity > 0) {
+      printf("Especificações da tabela '%s':\n", tableName);
+      for (int i = 0; i < rowsQuantity; i++) {
+        printf("- Campo: %s, Tipo: %s\n", PQgetvalue(result, i, 0), PQgetvalue(result, i, 1));
+      }
+    } else {
+      const char error[100];
+      snprintf(error, sizeof(error), "A tabela '%s' não foi encontrada.", tableName);
+
+      print(error, "error");
+    }
+  } else {
+    printf("Erro ao executar a consulta: %s\n", PQerrorMessage(conn));
+  }
+
+  PQclear(result);
+}
 
 // void insertIntoTable(const char * table, const char * values) {
 //   //insert into table

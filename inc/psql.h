@@ -26,4 +26,7 @@ void closeConnection(PGconn* conn);
 //! Essa função busca as tabelas públicas do banco de dados registrado.
 PGresult* getTablesQuery(PGconn* conn);
 
+//! Função que recebe a conexão do banco de dados e uma query, executa essa query nessa conexão e retorna.
+PGresult* exeQuery(PGconn* conn, const char* query);
+
 #endif

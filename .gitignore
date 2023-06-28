@@ -2,3 +2,4 @@
 main
 obj
 localDB.txt
+.DS_Store

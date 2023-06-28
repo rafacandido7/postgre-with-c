@@ -77,3 +77,8 @@ PGresult* getTablesQuery(PGconn* conn) {
   PGresult* result = PQexec(conn, "SELECT table_name FROM information_schema.tables WHERE table_schema = 'public';");
   return result;
 }
+
+PGresult* exeQuery(PGconn* conn, const char* query) {
+  PGresult* result = PQexec(conn, query);
+  return result;
+}
