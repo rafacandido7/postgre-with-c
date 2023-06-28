@@ -49,3 +49,62 @@ void printLine(char* color) {
   print("-------------------------------------------", color);
 }
 
+char* getString() {
+  char* table = (char*)malloc(100*sizeof(char));
+  print("Qual o nome da tabela?", "blue");
+  scanf("%99s", table);
+  printLine("green");
+  return table;
+}
+
+void clearBuffer() {
+  while(getchar() != '\n');
+}
+
+int getRowNumber() {
+  int num;
+  print("Digite o número de campos da tabela: ", "green");
+  scanf("%d", &num);
+
+  return num;
+}
+
+void getColumns(char tableColumns[][2][100], int rowNumber) {
+  for (int i = 0; i < rowNumber; i++) {
+    printf("Nome da coluna %d: ", i+1);
+    scanf("%99s", tableColumns[i][0]);
+
+    printf("Tipo da coluna %d: ", i+1);
+    scanf("%99s", tableColumns[i][1]);
+
+    clearBuffer();
+  }
+}
+
+char* makeQuery(char* tableName, char tableColumns[][2][100], int fieldQuantity) {
+  int querySize = 700;
+  char* query = (char*)malloc(querySize);
+
+ int charsWritten = snprintf(query, querySize, "CREATE TABLE %s (", tableName);
+
+  if (charsWritten >= querySize) {
+    querySize = charsWritten + 1;
+    query = realloc(query, querySize * sizeof(char));
+
+    charsWritten = snprintf(query, querySize, "CREATE TABLE %s (", tableName);
+  }
+
+  for (int i = 0; i < fieldQuantity; i++) {
+    strcat(query, tableColumns[i][0]);
+    strcat(query, " ");
+    strcat(query, tableColumns[i][1]);
+
+    if (i < fieldQuantity-1) {
+      strcat(query, ",");
+    }
+  }
+
+  strcat(query, ");");
+
+  return query;
+}

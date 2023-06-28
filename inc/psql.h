@@ -29,4 +29,7 @@ PGresult* getTablesQuery(PGconn* conn);
 //! Função que recebe a conexão do banco de dados e uma query, executa essa query nessa conexão e retorna.
 PGresult* exeQuery(PGconn* conn, const char* query);
 
+//! Verifica a criação da tabela
+void verifyCreateTable(PGresult* result, PGconn* connection);
+
 #endif

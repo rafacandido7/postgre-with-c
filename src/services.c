@@ -30,7 +30,7 @@ void options(PGconn* conn) {
     print("0 - Encerrar programa", "blue");
     print("1 - Exibir a lista de tabelas do BD", "blue");
     print("2 - Exibir as especificações de campos e tipos de uma determinada tabela", "blue");
-    // print("3 - Criar uma nova tabela", "blue");
+    print("3 - Criar uma nova tabela", "blue");
     // print("4 - Inserir dados em uma tabela", "blue");
     // print("5 - Exibir dados de uma tabela", "blue");
     // print("6 - Remover os dados de uma tabela", "blue");
@@ -51,13 +51,14 @@ void options(PGconn* conn) {
       char* table = (char*)malloc(100*sizeof(char));
       print("Qual o nome da tabela?", "blue");
       scanf("%99s", table);
-      print(table, "green");
       showTableSpecifications(conn, table);
       free(table);
       printLine("green");
     }
     if (loop == 3) {
-      // createNewTable();
+      print("Criar Tabela", "green");
+      createNewTable(conn);
+      printLine("green");
     }
     if (loop == 4) {
       // insert();
@@ -120,13 +121,35 @@ void showTableSpecifications(PGconn* conn, const char* tableName) {
   PQclear(result);
 }
 
+void createNewTable(PGconn* conn) {
+  char* tableName = getString();
+
+  clearBuffer();
+
+  int rowNumber = getRowNumber();
+
+  print("Digite o nome dos campos e os tipos desses campos:", "green");
+
+  char tableColumns[rowNumber][2][100];
+
+  getColumns(tableColumns, rowNumber);
+
+  char* query = makeQuery(tableName, tableColumns, rowNumber);
+
+  PGresult* result = exeQuery(conn, query);
+
+  verifyCreateTable(result, conn);
+
+  PQclear(result);
+
+  free(query);
+  free(tableName);
+}
+
 // void insertIntoTable(const char * table, const char * values) {
 //   //insert into table
 // }
 
-// void showTable() {
-//   //show table
-// }
 
 // char* specifyColumn() {
 //   // especificar colunas que serão mostradas na showTable

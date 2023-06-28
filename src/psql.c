@@ -82,3 +82,12 @@ PGresult* exeQuery(PGconn* conn, const char* query) {
   PGresult* result = PQexec(conn, query);
   return result;
 }
+
+void verifyCreateTable(PGresult* result, PGconn* connection) {
+  if (PQresultStatus(result) == PGRES_COMMAND_OK) {
+    print("Tabela criada com sucesso!", "success");
+  } else {
+    print("Erro ao criar a tabela: ", "error");
+    print(PQerrorMessage(connection), "error");
+  }
+}

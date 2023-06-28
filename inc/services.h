@@ -19,10 +19,13 @@ void options(PGconn* conn);
  *
  */
 void showTables(PGconn* conn);
+
+//! Recebe como parâmetro a conexão e o nome da tabela e printa na tela as colunas da tabela e as devidas especificações.
 void showTableSpecifications(PGconn* conn, const char* tableName);
-// void createNewTable(void);
+
+//! Cria uma nova tabela.
+void createNewTable(PGconn* conn);
 // void insert(void);
-// void showTable(void);
 // void deleteRow(void);
 
 // void insertIntoTable(const char * table, const char * values);

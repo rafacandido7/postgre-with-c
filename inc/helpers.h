@@ -15,5 +15,23 @@ bool strIsEqual(const char *str1, const char *str2);
 
 //! Printa uma linha com a cor escolhida
 void printLine(char* color);
+
+//! Função para pegar uma string do usuário
+char* getString();
+
+//! Função para poder limpar o buffer de entrada
+void clearBuffer();
+
+//! Função para poder pegar um inteiro do usuário
+int getRowNumber();
+
+//! Pega o nome e o tipo da coluna
+void getColumns(char tableColumns[][2][100], int rowNumber);
+
+//! Cria a query SQL
+char* makeQuery(char* tableName, char tableColumns[][2][100], int fieldQuantity);
+
+
+
 #endif
 
