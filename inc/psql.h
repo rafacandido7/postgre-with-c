@@ -43,6 +43,6 @@ PGresult* getTableSpecifications(PGconn* conn, const char* tableName);
  * Os valores inseridos são concatenados em uma query de inserção e executados no banco de dados.
  * Exibe mensagem de erro em caso de falha na inserção.
  */
-void insertData(PGconn* conn, PGresult* res, const char* tableName);ð
+void insertData(PGconn* conn, PGresult* res, const char* tableName);
 
 #endif
