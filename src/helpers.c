@@ -85,7 +85,7 @@ char* makeQuery(char* tableName, char tableColumns[][2][100], int fieldQuantity)
   int querySize = 700;
   char* query = (char*)malloc(querySize);
 
- int charsWritten = snprintf(query, querySize, "CREATE TABLE %s (", tableName);
+  int charsWritten = snprintf(query, querySize, "CREATE TABLE %s (", tableName);
 
   if (charsWritten >= querySize) {
     querySize = charsWritten + 1;

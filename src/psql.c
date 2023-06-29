@@ -83,6 +83,14 @@ PGresult* exeQuery(PGconn* conn, const char* query) {
   return result;
 }
 
+PGresult* getTableSpecifications(PGconn* conn, const char* tableName) {
+  char query[256];
+  snprintf(query, sizeof(query), "SELECT column_name, data_type FROM information_schema.columns WHERE table_name = '%s';", tableName);
+
+  PGresult* result = exeQuery(conn, query);
+  return result;
+}
+
 void verifyCreateTable(PGresult* result, PGconn* connection) {
   if (PQresultStatus(result) == PGRES_COMMAND_OK) {
     print("Tabela criada com sucesso!", "success");
@@ -90,4 +98,42 @@ void verifyCreateTable(PGresult* result, PGconn* connection) {
     print("Erro ao criar a tabela: ", "error");
     print(PQerrorMessage(connection), "error");
   }
+}
+
+void insertData(PGconn* conn, PGresult* res, const char* tableName) {
+  char query[500];
+  snprintf(query, sizeof(query), "INSERT INTO %s VALUES (", tableName);
+
+  int numColumns = PQntuples(res);
+
+  for (int i = 0; i < numColumns; i++) {
+    char value[100];
+
+    printf("Informe o valor para o campo '%s' (%s): ", PQgetvalue(res, i, 0), PQgetvalue(res, i, 1));
+    scanf("%99s", value);
+    clearBuffer();
+
+    strcat(query, "'");
+    strcat(query, value);
+    strcat(query, "'");
+
+    if (i < numColumns - 1) {
+      strcat(query, ",");
+    }
+  }
+
+  strcat(query, ");");
+
+  PGresult* result = PQexec(conn, query);
+
+  printf("\n");
+
+  if (PQresultStatus(result) != PGRES_COMMAND_OK) {
+    print("Erro ao inserir os dados: %s\n", "error");
+    print(PQerrorMessage(conn), "error");
+  } else {
+    print("Dados adicionados com sucesso!", "success");
+  }
+
+  PQclear(result);
 }

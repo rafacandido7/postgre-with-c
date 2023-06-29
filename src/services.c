@@ -6,7 +6,7 @@
 #include "/opt/homebrew/opt/libpq/include/libpq-fe.h"
 
 void start() {
-  print("connPSQL.exe v0.0.4", "blue");
+  print("connPSQL.exe v0.0.6", "blue");
 
   PGconn* connection = connectDB();
 
@@ -31,7 +31,7 @@ void options(PGconn* conn) {
     print("1 - Exibir a lista de tabelas do BD", "blue");
     print("2 - Exibir as especificações de campos e tipos de uma determinada tabela", "blue");
     print("3 - Criar uma nova tabela", "blue");
-    // print("4 - Inserir dados em uma tabela", "blue");
+    print("4 - Inserir dados em uma tabela", "blue");
     // print("5 - Exibir dados de uma tabela", "blue");
     // print("6 - Remover os dados de uma tabela", "blue");
 
@@ -48,9 +48,7 @@ void options(PGconn* conn) {
       printLine("green");
     }
     if (loop == 2) {
-      char* table = (char*)malloc(100*sizeof(char));
-      print("Qual o nome da tabela?", "blue");
-      scanf("%99s", table);
+      char* table = getString();
       showTableSpecifications(conn, table);
       free(table);
       printLine("green");
@@ -61,7 +59,8 @@ void options(PGconn* conn) {
       printLine("green");
     }
     if (loop == 4) {
-      // insert();
+      print("Inserir dados na tabela", "green");
+      insert(conn);
     }
     if (loop == 5) {
       // showTable();
@@ -95,10 +94,7 @@ void showTables(PGconn* conn) {
 }
 
 void showTableSpecifications(PGconn* conn, const char* tableName) {
-  char query[256];
-  snprintf(query, sizeof(query), "SELECT column_name, data_type FROM information_schema.columns WHERE table_name = '%s';", tableName);
-
-  PGresult* result = exeQuery(conn, query);
+  PGresult* result = getTableSpecifications(conn, tableName);
 
   if (PQresultStatus(result) == PGRES_TUPLES_OK) {
     int rowsQuantity = PQntuples(result);
@@ -146,10 +142,17 @@ void createNewTable(PGconn* conn) {
   free(tableName);
 }
 
-// void insertIntoTable(const char * table, const char * values) {
-//   //insert into table
-// }
+void insert(PGconn* conn) {
+  const char* tableName = getString();
 
+  PGresult* res = getTableSpecifications(conn, tableName);
+
+  int numColumns = PQntuples(res);
+
+  insertData(conn, res, tableName);
+
+  free(tableName);
+}
 
 // char* specifyColumn() {
 //   // especificar colunas que serão mostradas na showTable

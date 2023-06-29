@@ -32,4 +32,17 @@ PGresult* exeQuery(PGconn* conn, const char* query);
 //! Verifica a criação da tabela
 void verifyCreateTable(PGresult* result, PGconn* connection);
 
+//! Pega as especificações de uma tabela,recebendo a conexão e o nome da tabela
+PGresult* getTableSpecifications(PGconn* conn, const char* tableName);
+
+
+/**
+ * Insere dados em uma tabela do banco de dados.
+ *
+ * Solicita ao usuário que insira valores para cada campo da tabela, mostrando o nome e tipo correspondente.
+ * Os valores inseridos são concatenados em uma query de inserção e executados no banco de dados.
+ * Exibe mensagem de erro em caso de falha na inserção.
+ */
+void insertData(PGconn* conn, PGresult* res, const char* tableName);ð
+
 #endif

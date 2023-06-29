@@ -1,6 +1,8 @@
 #ifndef SERVICES_H_
 #define SERVICES_H_
 
+#define MAX_COLUMNS 10
+
 #include "psql.h"
 #include "helpers.h"
 #include "/opt/homebrew/opt/libpq/include/libpq-fe.h"
@@ -25,7 +27,9 @@ void showTableSpecifications(PGconn* conn, const char* tableName);
 
 //! Cria uma nova tabela.
 void createNewTable(PGconn* conn);
-// void insert(void);
+
+//! Função para poder adicionar
+void insert(PGconn* conn);
 // void deleteRow(void);
 
 // void insertIntoTable(const char * table, const char * values);
