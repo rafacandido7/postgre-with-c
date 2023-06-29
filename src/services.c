@@ -6,7 +6,7 @@
 #include "/opt/homebrew/opt/libpq/include/libpq-fe.h"
 
 void start() {
-  print("connPSQL.exe v0.0.6", "blue");
+  print("connPSQL.exe v0.0.7", "blue");
 
   PGconn* connection = connectDB();
 
@@ -32,7 +32,7 @@ void options(PGconn* conn) {
     print("2 - Exibir as especificações de campos e tipos de uma determinada tabela", "blue");
     print("3 - Criar uma nova tabela", "blue");
     print("4 - Inserir dados em uma tabela", "blue");
-    // print("5 - Exibir dados de uma tabela", "blue");
+    print("5 - Exibir dados de uma tabela", "blue");
     // print("6 - Remover os dados de uma tabela", "blue");
 
     scanf("%d", &loop);
@@ -63,7 +63,7 @@ void options(PGconn* conn) {
       insert(conn);
     }
     if (loop == 5) {
-      // showTable();
+      showTable(conn);
     }
     if (loop == 6) {
       // deleteRow();
@@ -154,6 +154,21 @@ void insert(PGconn* conn) {
   free(tableName);
 }
 
-// char* specifyColumn() {
-//   // especificar colunas que serão mostradas na showTable
-// }
+void showTable(PGconn* conn) {
+  const char* tableName = getString();
+
+  print("Select", "green");
+  print("Selecione as colunas para a filtragem", "green");
+
+  const char* query = buildQueryWithFilter(tableName);
+
+  print(query, "blue");
+
+  PGresult* res = exeQuery(conn, query);
+
+  displayQueryResult(res);
+
+  free(query);
+  free(tableName);
+}
+

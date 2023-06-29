@@ -137,3 +137,34 @@ void insertData(PGconn* conn, PGresult* res, const char* tableName) {
 
   PQclear(result);
 }
+
+void displayTableResult(PGconn* conn, PGresult* res, const char* tableName) {
+   if (PQresultStatus(res) == PGRES_TUPLES_OK) {
+    int rowCount = PQntuples(res);
+    int colCount = PQnfields(res);
+
+    printf("Dados da tabela '%s':\n", tableName);
+    for (int i = 0; i < rowCount; i++) {
+      for (int j = 0; j < colCount; j++) {
+        printf("%s: %s\t", PQfname(res, j), PQgetvalue(res, i, j));
+      }
+      printf("\n");
+    }
+  } else {
+    printf("Erro ao executar a consulta: %s\n", PQerrorMessage(conn));
+  }
+}
+
+void displayQueryResult(PGresult* res) {
+  int numRows = PQntuples(res);
+  int numColumns = PQnfields(res);
+
+  for (int row = 0; row < numRows; row++) {
+    for (int col = 0; col < numColumns; col++) {
+      printf("%s: %s\n", PQfname(res, col), PQgetvalue(res, row, col));
+    }
+    printf("\n");
+  }
+
+  PQclear(res);
+}

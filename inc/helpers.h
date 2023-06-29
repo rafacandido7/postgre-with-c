@@ -31,5 +31,8 @@ void getColumns(char tableColumns[][2][100], int rowNumber);
 //! Cria a query SQL
 char* makeQuery(char* tableName, char tableColumns[][2][100], int fieldQuantity);
 
+//! Cria a query SQL com os filtros necessários para o SELECT
+char* buildQueryWithFilter(const char* tableName);
+
 #endif
 

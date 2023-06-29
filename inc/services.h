@@ -30,9 +30,11 @@ void createNewTable(PGconn* conn);
 
 //! Função para poder adicionar
 void insert(PGconn* conn);
-// void deleteRow(void);
 
-// void insertIntoTable(const char * table, const char * values);
-// void showTableDataWithFilters();
+//! Função para fazer um select com filtro
+void showTable(PGconn* conn);
+
+//! Função para exibir o resultado da query
+void displayQueryResult(PGresult* res);
 
 #endif

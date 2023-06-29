@@ -108,3 +108,34 @@ char* makeQuery(char* tableName, char tableColumns[][2][100], int fieldQuantity)
 
   return query;
 }
+
+char* buildQueryWithFilter(const char* tableName) {
+  const int maxWhereSize = 256;
+
+  char* whereClause = (char*)malloc(maxWhereSize * sizeof(char));
+
+  print("Digite a sentença WHERE: ", "green");
+
+  int c;
+  while ((c = getchar()) != '\n' && c != EOF) {}
+
+  fgets(whereClause, maxWhereSize, stdin);
+
+  whereClause[strcspn(whereClause, "\n")] = '\0';
+
+  int querySize = 1200;
+  char* query = (char*)malloc(querySize);
+
+  int charsWritten = snprintf(query, querySize, "SELECT * FROM %s WHERE %s;", tableName, whereClause);
+
+  if (charsWritten >= querySize) {
+    querySize = charsWritten + 1;
+    query = realloc(query, querySize * 2);
+
+    charsWritten = snprintf(query, querySize, "SELECT * FROM %s WHERE %s;", tableName, whereClause);
+  }
+
+  free(whereClause);
+
+  return query;
+}
