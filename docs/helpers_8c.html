@@ -133,6 +133,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a8e2e54bcc10c7cddd09444b41433c007"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="helpers_8c.html#a8e2e54bcc10c7cddd09444b41433c007">buildQueryWithFilter</a> (const char *tableName)</td></tr>
 <tr class="memdesc:a8e2e54bcc10c7cddd09444b41433c007"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cria a query SQL com os filtros necessários para o SELECT.  <br /></td></tr>
 <tr class="separator:a8e2e54bcc10c7cddd09444b41433c007"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5373eb1f29141e6d934d3a36204486d8"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="helpers_8c.html#a5373eb1f29141e6d934d3a36204486d8">buildDeleteQueryWithFilter</a> (const char *tableName)</td></tr>
+<tr class="memdesc:a5373eb1f29141e6d934d3a36204486d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cria a query SQL para deletar algo com filtros;.  <br /></td></tr>
+<tr class="separator:a5373eb1f29141e6d934d3a36204486d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
@@ -253,6 +256,30 @@ Variables</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="a5373eb1f29141e6d934d3a36204486d8" name="a5373eb1f29141e6d934d3a36204486d8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5373eb1f29141e6d934d3a36204486d8">&#9670;&#160;</a></span>buildDeleteQueryWithFilter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char * buildDeleteQueryWithFilter </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>tableName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Cria a query SQL para deletar algo com filtros;. </p>
+
+<p class="reference">References <a class="el" href="helpers_8c.html#a2e7724347fb97a72e2c946f9a805558c">print()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="services_8c.html#ac0b8bc3aee12e4ad0a2a4d0340de11d8">delete()</a>.</p>
+
+</div>
+</div>
 <a id="a8e2e54bcc10c7cddd09444b41433c007" name="a8e2e54bcc10c7cddd09444b41433c007"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8e2e54bcc10c7cddd09444b41433c007">&#9670;&#160;</a></span>buildQueryWithFilter()</h2>
 
@@ -374,7 +401,7 @@ Variables</h2></td></tr>
 
 <p class="reference">References <a class="el" href="helpers_8c.html#a2e7724347fb97a72e2c946f9a805558c">print()</a>, and <a class="el" href="helpers_8c.html#a17fc3206f04a56b3133d82f8850562e9">printLine()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="services_8c.html#abf467b72f9ea23d3aafbbea39120a7b8">createNewTable()</a>, <a class="el" href="services_8c.html#a4ba3eb3a14ff37f1bfc10a2c8ab70757">insert()</a>, <a class="el" href="services_8c.html#a2ef9b28fcbe7a4c03f6f50d8e53d41ec">options()</a>, and <a class="el" href="services_8c.html#a30a75c16f580192e78e51566e529aa77">showTable()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="services_8c.html#abf467b72f9ea23d3aafbbea39120a7b8">createNewTable()</a>, <a class="el" href="services_8c.html#ac0b8bc3aee12e4ad0a2a4d0340de11d8">delete()</a>, <a class="el" href="services_8c.html#a4ba3eb3a14ff37f1bfc10a2c8ab70757">insert()</a>, <a class="el" href="services_8c.html#a2ef9b28fcbe7a4c03f6f50d8e53d41ec">options()</a>, and <a class="el" href="services_8c.html#a30a75c16f580192e78e51566e529aa77">showTable()</a>.</p>
 
 </div>
 </div>
@@ -446,7 +473,7 @@ Variables</h2></td></tr>
 
 <p class="reference">References <a class="el" href="helpers_8c.html#add9307de87f38e77d336751e305886f6">BLU</a>, <a class="el" href="helpers_8c.html#adc708fa688f5d78db361f66c36f0f807">CYN</a>, <a class="el" href="helpers_8c.html#aea69ffbacdcdf16c21b8c9961df84448">GRN</a>, <a class="el" href="helpers_8c.html#af54a5a977c0c499323d656315f008ee0">MAG</a>, <a class="el" href="helpers_8c.html#a8d23feea868a983c8c2b661e1e16972f">RED</a>, <a class="el" href="helpers_8c.html#ab702106cf3b3e96750b6845ded4e0299">RESET</a>, <a class="el" href="helpers_8c.html#ae211703f2d4c6e38cf2310e98698439f">strIsEqual()</a>, <a class="el" href="helpers_8c.html#aeaf3a04d5bf63b204689a714718ea930">WHT</a>, and <a class="el" href="helpers_8c.html#a96fac03c4ab3363f06a0328e0e53a40c">YEL</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="helpers_8c.html#a8e2e54bcc10c7cddd09444b41433c007">buildQueryWithFilter()</a>, <a class="el" href="psql_8c.html#a6c181f7a2ee3c1ef016ddaad97f5b4fd">closeConnection()</a>, <a class="el" href="services_8c.html#abf467b72f9ea23d3aafbbea39120a7b8">createNewTable()</a>, <a class="el" href="helpers_8c.html#adfd026bf7ca2a5c588418ff427f16e98">getRowNumber()</a>, <a class="el" href="helpers_8c.html#ad44c1d6100c8292003fb4c47bee6be6a">getString()</a>, <a class="el" href="psql_8c.html#a6570f35a5ce999382133a3eb6dde0d68">insertData()</a>, <a class="el" href="services_8c.html#a2ef9b28fcbe7a4c03f6f50d8e53d41ec">options()</a>, <a class="el" href="helpers_8c.html#a17fc3206f04a56b3133d82f8850562e9">printLine()</a>, <a class="el" href="services_8c.html#a30a75c16f580192e78e51566e529aa77">showTable()</a>, <a class="el" href="services_8c.html#a63fdec9219bd4409816bbb60dd99113e">showTables()</a>, <a class="el" href="services_8c.html#a5991bc8da4ff913697bdffe32896d8bd">showTableSpecifications()</a>, <a class="el" href="services_8c.html#a60de64d75454385b23995437f1d72669">start()</a>, and <a class="el" href="psql_8c.html#af8c3692ef734979378257ac6c6d93182">verifyCreateTable()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="helpers_8c.html#a5373eb1f29141e6d934d3a36204486d8">buildDeleteQueryWithFilter()</a>, <a class="el" href="helpers_8c.html#a8e2e54bcc10c7cddd09444b41433c007">buildQueryWithFilter()</a>, <a class="el" href="psql_8c.html#a30498c05becb8a157406b738ae99a189">checkDeleteResult()</a>, <a class="el" href="psql_8c.html#a6c181f7a2ee3c1ef016ddaad97f5b4fd">closeConnection()</a>, <a class="el" href="services_8c.html#abf467b72f9ea23d3aafbbea39120a7b8">createNewTable()</a>, <a class="el" href="services_8c.html#ac0b8bc3aee12e4ad0a2a4d0340de11d8">delete()</a>, <a class="el" href="helpers_8c.html#adfd026bf7ca2a5c588418ff427f16e98">getRowNumber()</a>, <a class="el" href="helpers_8c.html#ad44c1d6100c8292003fb4c47bee6be6a">getString()</a>, <a class="el" href="psql_8c.html#a6570f35a5ce999382133a3eb6dde0d68">insertData()</a>, <a class="el" href="services_8c.html#a2ef9b28fcbe7a4c03f6f50d8e53d41ec">options()</a>, <a class="el" href="helpers_8c.html#a17fc3206f04a56b3133d82f8850562e9">printLine()</a>, <a class="el" href="services_8c.html#a30a75c16f580192e78e51566e529aa77">showTable()</a>, <a class="el" href="services_8c.html#a63fdec9219bd4409816bbb60dd99113e">showTables()</a>, <a class="el" href="services_8c.html#a5991bc8da4ff913697bdffe32896d8bd">showTableSpecifications()</a>, <a class="el" href="services_8c.html#a60de64d75454385b23995437f1d72669">start()</a>, and <a class="el" href="psql_8c.html#af8c3692ef734979378257ac6c6d93182">verifyCreateTable()</a>.</p>
 
 </div>
 </div>

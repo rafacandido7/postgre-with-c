@@ -37,4 +37,10 @@ void showTable(PGconn* conn);
 //! Função para exibir o resultado da query
 void displayQueryResult(PGresult* res);
 
+//! Delete function
+void delete(PGconn* conn);
+
+//! Função para checkar se a query de delete foi bem sucedida
+void checkDeleteResult(PGresult* res);
+
 #endif

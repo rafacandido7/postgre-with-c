@@ -6,7 +6,7 @@
 #include "/opt/homebrew/opt/libpq/include/libpq-fe.h"
 
 void start() {
-  print("connPSQL.exe v0.0.7", "blue");
+  print("connPSQL.exe v1.0", "blue");
 
   PGconn* connection = connectDB();
 
@@ -33,7 +33,7 @@ void options(PGconn* conn) {
     print("3 - Criar uma nova tabela", "blue");
     print("4 - Inserir dados em uma tabela", "blue");
     print("5 - Exibir dados de uma tabela", "blue");
-    // print("6 - Remover os dados de uma tabela", "blue");
+    print("6 - Remover os dados de uma tabela", "blue");
 
     scanf("%d", &loop);
 
@@ -172,5 +172,18 @@ void showTable(PGconn* conn) {
 }
 
 void delete(PGconn* conn) {
+  const char* tableName = getString();
 
+  print("Select", "green");
+
+  const char* query = buildDeleteQueryWithFilter(tableName);
+
+  print(query, "blue");
+
+  PGresult* res = exeQuery(conn, query);
+
+  checkDeleteResult(res);
+
+  free(query);
+  free(tableName);
 }

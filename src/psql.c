@@ -168,3 +168,15 @@ void displayQueryResult(PGresult* res) {
 
   PQclear(res);
 }
+
+void checkDeleteResult(PGresult* res) {
+  ExecStatusType status = PQresultStatus(res);
+
+  if (status == PGRES_COMMAND_OK || status == PGRES_TUPLES_OK) {
+    print("Exclusão bem-sucedida.", "green");
+  } else {
+    printf("Falha na exclusão.", "error");
+  }
+
+  PQclear(res);
+}

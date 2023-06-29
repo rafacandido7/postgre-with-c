@@ -124,8 +124,35 @@ Functions</h2></td></tr>
 <tr class="memitem:aca91d7a2e69cde18f98adb8e11cdd86e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="psql_8c.html#aca91d7a2e69cde18f98adb8e11cdd86e">displayQueryResult</a> (PGresult *res)</td></tr>
 <tr class="memdesc:aca91d7a2e69cde18f98adb8e11cdd86e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Função para exibir o resultado da query.  <br /></td></tr>
 <tr class="separator:aca91d7a2e69cde18f98adb8e11cdd86e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a30498c05becb8a157406b738ae99a189"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="psql_8c.html#a30498c05becb8a157406b738ae99a189">checkDeleteResult</a> (PGresult *res)</td></tr>
+<tr class="memdesc:a30498c05becb8a157406b738ae99a189"><td class="mdescLeft">&#160;</td><td class="mdescRight">Função para checkar se a query de delete foi bem sucedida.  <br /></td></tr>
+<tr class="separator:a30498c05becb8a157406b738ae99a189"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="a30498c05becb8a157406b738ae99a189" name="a30498c05becb8a157406b738ae99a189"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a30498c05becb8a157406b738ae99a189">&#9670;&#160;</a></span>checkDeleteResult()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void checkDeleteResult </td>
+          <td>(</td>
+          <td class="paramtype">PGresult *&#160;</td>
+          <td class="paramname"><em>res</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Função para checkar se a query de delete foi bem sucedida. </p>
+
+<p class="reference">References <a class="el" href="helpers_8c.html#a2e7724347fb97a72e2c946f9a805558c">print()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="services_8c.html#ac0b8bc3aee12e4ad0a2a4d0340de11d8">delete()</a>.</p>
+
+</div>
+</div>
 <a id="a6c181f7a2ee3c1ef016ddaad97f5b4fd" name="a6c181f7a2ee3c1ef016ddaad97f5b4fd"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6c181f7a2ee3c1ef016ddaad97f5b4fd">&#9670;&#160;</a></span>closeConnection()</h2>
 
@@ -257,7 +284,7 @@ Functions</h2></td></tr>
 
 <p>Função que recebe a conexão do banco de dados e uma query, executa essa query nessa conexão e retorna. </p>
 
-<p class="reference">Referenced by <a class="el" href="services_8c.html#abf467b72f9ea23d3aafbbea39120a7b8">createNewTable()</a>, <a class="el" href="psql_8c.html#a0ebd24a5399eda1837a4db46ff51def2">getTableSpecifications()</a>, and <a class="el" href="services_8c.html#a30a75c16f580192e78e51566e529aa77">showTable()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="services_8c.html#abf467b72f9ea23d3aafbbea39120a7b8">createNewTable()</a>, <a class="el" href="services_8c.html#ac0b8bc3aee12e4ad0a2a4d0340de11d8">delete()</a>, <a class="el" href="psql_8c.html#a0ebd24a5399eda1837a4db46ff51def2">getTableSpecifications()</a>, and <a class="el" href="services_8c.html#a30a75c16f580192e78e51566e529aa77">showTable()</a>.</p>
 
 </div>
 </div>

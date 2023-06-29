@@ -34,5 +34,7 @@ char* makeQuery(char* tableName, char tableColumns[][2][100], int fieldQuantity)
 //! Cria a query SQL com os filtros necessários para o SELECT
 char* buildQueryWithFilter(const char* tableName);
 
+//! Cria a query SQL para deletar algo com filtros;
+char* buildDeleteQueryWithFilter(const char* tableName);
 #endif
 
