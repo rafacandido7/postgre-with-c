@@ -66,7 +66,7 @@ void options(PGconn* conn) {
       showTable(conn);
     }
     if (loop == 6) {
-      // deleteRow();
+      delete(conn);
     }
   }
 }
@@ -158,7 +158,6 @@ void showTable(PGconn* conn) {
   const char* tableName = getString();
 
   print("Select", "green");
-  print("Selecione as colunas para a filtragem", "green");
 
   const char* query = buildQueryWithFilter(tableName);
 
@@ -172,3 +171,6 @@ void showTable(PGconn* conn) {
   free(tableName);
 }
 
+void delete(PGconn* conn) {
+
+}
